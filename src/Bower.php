@@ -39,7 +39,7 @@ class Bower implements Plugin
     }
 
     /**
-     * Executes gulp and runs a specified command (e.g. install / update)
+     * Executes bower and runs a specified command (e.g. install / update)
      */
     public function execute()
     {
