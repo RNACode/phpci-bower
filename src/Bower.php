@@ -45,9 +45,9 @@ class Bower implements Plugin
     public function execute()
     {
         // check command
-        if (!$this->command) {
+        if ($this->command === null) {
             $this->build->setStatus(Build::STATUS_FAILED);
-            $this->phpci->logFailure('Missing require command parameter');
+            $this->phpci->log('Missing require "command" parameter', LogLevel::ERROR);
             return false;
         }
         $cmd = 'cd';
