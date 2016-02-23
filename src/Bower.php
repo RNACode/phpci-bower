@@ -50,6 +50,17 @@ class Bower implements Plugin
             $this->phpci->log('Missing require "command" parameter', LogLevel::ERROR);
             return false;
         }
+        $flags = $this->flags;
+
+        foreach($flags as $key => $flag){
+            $flag = trim($flag);
+            if($flag !== '--no-color'){
+                $flags[$key] = $flag;
+            }
+        }
+
+        $flags[] = '--no-color';
+
         $cmd = 'cd';
         if (IS_WIN) {
             $cmd .= ' /d';
