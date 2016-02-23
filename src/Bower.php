@@ -45,29 +45,14 @@ class Bower implements Plugin
      */
     public function execute()
     {
-        // if npm does not work, we cannot use gulp, so we return false
-//        $cmd = 'cd %s && npm install';
-//        if (IS_WIN) {
-//            $cmd = 'cd /d %s && npm install';
-//        }
-//        if (!$this->phpci->executeCommand($cmd, $this->directory)) {
-//            return false;
-//        }
-
         // build the gulp command
-        $cmd = 'cd %s && ' . $this->bower;
+        $cmd = 'cd';
         if (IS_WIN) {
-            $cmd = 'cd /d %s && ' . $this->bower;
+            $cmd .= ' /d';
         }
-        $cmd .= ' %s %s';
-        var_dump(sprintf(
-            $cmd,
-            $this->directory,
-            $this->command,
-            implode(' ', $this->flags)
-            ));
+        $cmd .= ' %s && %s %s %s';
         // and execute it
-        return $this->phpci->executeCommand($cmd, $this->directory, $this->command, implode(' ', $this->flags));
+        return $this->phpci->executeCommand($cmd, $this->directory, $this->bower, $this->command, implode(' ', $this->flags));
     }
 
 }
