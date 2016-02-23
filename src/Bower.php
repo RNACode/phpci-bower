@@ -35,6 +35,9 @@ class Bower implements Plugin
         $this->phpci = $phpci;
         $this->directory = $path;
         $this->bower = $this->phpci->findBinary('bower');
+        if (array_key_exists('directory', $options)) {
+            $this->directory = $path . '/' . $options['directory'];
+        }
         $this->command = array_key_exists('command', $options) ? $options['command'] : null;
         $this->flags = array_key_exists('flags', $options) ? $options['flags'] : [];
     }
