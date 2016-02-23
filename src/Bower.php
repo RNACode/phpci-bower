@@ -10,13 +10,12 @@ use PHPCI\Plugin;
 class Bower implements Plugin
 {
 
-    /**
-     * @var string
-     */
     protected $directory;
     protected $phpci;
     protected $build;
     protected $bower;
+    protected $command;
+    protected $flags;
 
     /**
      * Standard Constructor
@@ -27,8 +26,8 @@ class Bower implements Plugin
      * $options['stub']      Stub Content. No Default Value
      *
      * @param Builder $phpci
-     * @param Build   $build
-     * @param array   $options
+     * @param Build $build
+     * @param array $options
      */
     public function __construct(Builder $phpci, Build $build, array $options = array())
     {
@@ -37,7 +36,8 @@ class Bower implements Plugin
         $this->phpci = $phpci;
         $this->directory = $path;
         $this->bower = $this->phpci->findBinary('bower');
-        var_dump($options);
+        $this->command = array_key_exists('command', $options) ? $options['command'] : null;
+        $this->flags = array_key_exists('flags', $options) ? $options['flags'] : [];
     }
 
     /**
@@ -46,12 +46,27 @@ class Bower implements Plugin
     public function execute()
     {
         // if npm does not work, we cannot use gulp, so we return false
-        $cmd = 'echo %s';
+//        $cmd = 'cd %s && npm install';
+//        if (IS_WIN) {
+//            $cmd = 'cd /d %s && npm install';
+//        }
+//        if (!$this->phpci->executeCommand($cmd, $this->directory)) {
+//            return false;
+//        }
+
+        // build the gulp command
+        $cmd = 'cd %s && ' . $this->bower;
         if (IS_WIN) {
-            $cmd = 'echo /d %s';
+            $cmd = 'cd /d %s && ' . $this->bower;
         }
+        $cmd .= ' %s';
+        var_dump(sprintf(
+            $cmd,
+            $this->directory,
+            implode(' ', $this->flags)
+            ));
         // and execute it
-        return $this->phpci->executeCommand($cmd, $this->directory);
+        return $this->phpci->executeCommand($cmd, $this->directory, implode(' ', $this->flags));
     }
 
 }
