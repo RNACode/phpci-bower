@@ -59,14 +59,15 @@ class Bower implements Plugin
         if (IS_WIN) {
             $cmd = 'cd /d %s && ' . $this->bower;
         }
-        $cmd .= ' %s';
+        $cmd .= ' %s %s';
         var_dump(sprintf(
             $cmd,
             $this->directory,
+            $this->command,
             implode(' ', $this->flags)
             ));
         // and execute it
-        return $this->phpci->executeCommand($cmd, $this->directory, implode(' ', $this->flags));
+        return $this->phpci->executeCommand($cmd, $this->directory, $this->command, implode(' ', $this->flags));
     }
 
 }
