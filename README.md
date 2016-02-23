@@ -14,7 +14,7 @@ A plugin for PHPCI to download and install Bower packages required by your appli
 
 ### Plugin Options
 - **command** _[string, require]_ - Command name. See [API](http://bower.io/docs/api/)
-- **directory** _[string, optional]_ - Path to run bower in.
+- **directory** _[string, optional]_ - Relative path to run bower in.
 - **flags** _[list, optional]_ - Command flags
 
 ### PHPCI Config
