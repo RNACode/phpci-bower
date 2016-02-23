@@ -50,6 +50,7 @@ class Bower implements Plugin
             $this->phpci->log('Missing require "command" parameter', LogLevel::ERROR);
             return false;
         }
+
         $flags = $this->flags;
 
         foreach($flags as $key => $flag){
@@ -67,7 +68,7 @@ class Bower implements Plugin
         }
         $cmd .= ' %s && %s %s %s';
         // and execute it
-        return $this->phpci->executeCommand($cmd, $this->directory, $this->bower, $this->command, implode(' ', $this->flags));
+        return $this->phpci->executeCommand($cmd, $this->directory, $this->bower, $this->command, implode(' ', $flags));
     }
 
 }
