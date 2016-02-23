@@ -1,0 +1,24 @@
+{
+  "name": "rna-code/bower-phpci-plugin",
+  "description": "PHPCI plugin for Bower integration",
+  "keywords": ["phpci", "plugin", "bower"],
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nikolay Romaniuk",
+      "email": "dev.lllypyn@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "require-dev": {
+    "block8/phpci": "1.6.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "RNACode\\PHPCI\\": "src/"
+    }
+  }
+}
