@@ -6,6 +6,7 @@ namespace RNACode\PHPCI;
 use PHPCI\Builder;
 use PHPCI\Model\Build;
 use PHPCI\Plugin;
+use Psr\Log\LogLevel;
 
 class Bower implements Plugin
 {
@@ -43,7 +44,11 @@ class Bower implements Plugin
      */
     public function execute()
     {
-        // build the gulp command
+        // check command
+        if (!$this->command) {
+            $this->phpci->log('Missing require command parameter', LogLevel::ERROR);
+            return false;
+        }
         $cmd = 'cd';
         if (IS_WIN) {
             $cmd .= ' /d';
