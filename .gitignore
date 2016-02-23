@@ -1,0 +1,11 @@
+## Directory-based project format:
+.idea/
+# if you remove the above rule, at least ignore the following:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+vendor/
