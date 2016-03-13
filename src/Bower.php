@@ -39,7 +39,7 @@ class Bower implements Plugin
             $this->directory = $path . '/' . $options['directory'];
         }
         $this->command = array_key_exists('command', $options) ? $options['command'] : null;
-        $this->flags = array_key_exists('flags', $options) ? $options['flags'] : [];
+        $this->flags = array_key_exists('flags', $options) ? $options['flags'] : array();
     }
 
     /**
